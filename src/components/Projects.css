@@ -1,0 +1,31 @@
+.projects-heading {
+    font-family: 'Roboto', sans-serif;
+    color: #bd4e85; /* Change the color as needed */
+    text-align: center;
+  }
+  
+  .project-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(134, 32, 165, 0.993);
+    transition: transform 0.3s;
+    overflow: hidden; /* Hide overflow for images */
+  }
+  
+  .project-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .project-image {
+    width: 100%; /* Make images responsive */
+    height: auto;
+  }
+  
+  .project-title {
+    font-family: 'Arial', sans-serif; /* Change font family */
+    color: #81c6ff; /* Title color */
+  }
+  
+  .project-description {
+    color: #cacaca; /* Description color */
+  }
+  

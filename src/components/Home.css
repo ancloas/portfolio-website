@@ -1,0 +1,9 @@
+.link {
+    color: #f17eaa; /* Change this to your desired color */
+    text-decoration: none; /* Removes underline */
+  }
+  
+  .link:hover {
+    text-decoration: underline; /* Adds underline on hover */
+  }
+  
