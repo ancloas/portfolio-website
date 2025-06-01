@@ -63,7 +63,7 @@ const StyledTab = styled(Tab)({
   alignItems: 'flex-start',
   padding: '10px 20px',
   '&.Mui-selected': {
-    background: 'linear-gradient(to right, #ff7e5f, #feb47b)',
+    background: 'linear-gradient(90deg, rgba(28,113,201,1) 51%, rgba(255,89,0,1) 100%)',
     borderRadius: '10px 0 0 10px',
     color: '#fff'
   }

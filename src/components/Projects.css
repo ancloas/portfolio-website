@@ -7,6 +7,7 @@
   .project-card {
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(134, 32, 165, 0.993);
+    background-color: aqua;
     transition: transform 0.3s;
     overflow: hidden; /* Hide overflow for images */
   }

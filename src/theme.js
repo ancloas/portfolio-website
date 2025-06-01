@@ -4,18 +4,18 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#90caf9',
+      main: '#90caf9', // Default color
     },
     secondary: {
-      main: '#f48fb1',
+      main: '#f48fb1', // Default color
     },
     background: {
-      default: '#121212',
-      paper: '#1d1d1d',
+      default: '#2a2b33', // Default color
+      paper: '#434945', // Default color
     },
     text: {
-      primary: '#ffffff',
-      secondary: '#aaaaaa',
+      primary: '#ffffff', // Default color
+      secondary: '#aaaaaa', // Default color
     },
   },
   typography: {
