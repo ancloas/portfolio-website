@@ -1,13 +1,13 @@
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.sql import func
-from app.db.session import Base
+from sqlalchemy import Column, Integer, String, DateTime, Boolean
+from app.models.base import BaseModel
 
-class User(Base):
+
+
+class User(BaseModel):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, index=True)
-    username = Column(String, unique=True, index=True)
-    full_name = Column(String)
-    hashed_password = Column(String)
-    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    name = Column(String)
+    password_hash = Column(String)
+    is_admin = Column(Boolean, default=False)

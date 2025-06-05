@@ -13,3 +13,6 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+print("Database connection established with URL:", settings.DATABASE_URL)
