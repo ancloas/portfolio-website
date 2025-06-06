@@ -1,0 +1,515 @@
+{
+    "info": {
+        "name": "Portfolio API",
+        "description": "API collection for Portfolio application",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "url": "{{base_url}}/auth/login",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"admin123\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Signup",
+                    "request": {
+                        "method": "POST",
+                        "url": "{{base_url}}/auth/signup",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"userpass123\",\n    \"name\": \"Test User\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Get Current User",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/auth/me",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Articles",
+            "item": [
+                {
+                    "name": "Get All Articles",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/articles",
+                        "query": [
+                            {
+                                "key": "skip",
+                                "value": "0"
+                            },
+                            {
+                                "key": "limit",
+                                "value": "10"
+                            },
+                            {
+                                "key": "search",
+                                "value": ""
+                            },
+                            {
+                                "key": "category",
+                                "value": ""
+                            },
+                            {
+                                "key": "is_featured",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Get Article by ID",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/articles/1"
+                    }
+                },
+                {
+                    "name": "Get My Articles",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/articles/my-articles",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "query": [
+                            {
+                                "key": "skip",
+                                "value": "0"
+                            },
+                            {
+                                "key": "limit",
+                                "value": "10"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Create Article",
+                    "request": {
+                        "method": "POST",
+                        "url": "{{base_url}}/articles",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Sample Article\",\n    \"slug\": \"sample-article\",\n    \"content\": {\n        \"blocks\": [\n            {\n                \"type\": \"paragraph\",\n                \"data\": {\n                    \"text\": \"This is a sample article content.\"\n                }\n            }\n        ]\n    },\n    \"summary\": \"A brief summary of the article\",\n    \"meta_description\": \"SEO description\",\n    \"category\": \"Technology\",\n    \"tags\": [\"tech\", \"web\"]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Update Article",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/articles/1",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Updated Article\",\n    \"content\": {\n        \"blocks\": [\n            {\n                \"type\": \"paragraph\",\n                \"data\": {\n                    \"text\": \"Updated content.\"\n                }\n            }\n        ]\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Article",
+                    "request": {
+                        "method": "DELETE",
+                        "url": "{{base_url}}/articles/1",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Toggle Article Publish",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/articles/1/publish",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Toggle Article Feature",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/articles/1/feature",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Projects",
+            "item": [
+                {
+                    "name": "Get All Projects",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/projects",
+                        "query": [
+                            {
+                                "key": "skip",
+                                "value": "0"
+                            },
+                            {
+                                "key": "limit",
+                                "value": "10"
+                            },
+                            {
+                                "key": "search",
+                                "value": ""
+                            },
+                            {
+                                "key": "category",
+                                "value": ""
+                            },
+                            {
+                                "key": "is_featured",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Get Project by ID",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/projects/1",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Get My Projects",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/projects/my-projects",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Create Project",
+                    "request": {
+                        "method": "POST",
+                        "url": "{{base_url}}/projects",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Sample Project\",\n    \"description\": \"A sample project description\",\n    \"technologies\": \"Python, FastAPI, PostgreSQL\",\n    \"github_url\": \"https://github.com/username/project\",\n    \"live_url\": \"https://project.example.com\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Update Project",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/projects/1",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Updated Project\",\n    \"description\": \"Updated project description\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Project",
+                    "request": {
+                        "method": "DELETE",
+                        "url": "{{base_url}}/projects/1",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Skills",
+            "item": [
+                {
+                    "name": "Get All Skills",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/skills",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "query": [
+                            {
+                                "key": "category",
+                                "value": ""
+                            },
+                            {
+                                "key": "search",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Get My Skills",
+                    "request": {
+                        "method": "GET",
+                        "url": "{{base_url}}/skills/my-skills",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Add Skill",
+                    "request": {
+                        "method": "POST",
+                        "url": "{{base_url}}/skills/add-skill",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"skill_id\": 1,\n    \"proficiency_level\": 8.5,\n    \"years_experience\": 3,\n    \"description\": \"Experienced with this technology\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Update Skill",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/skills/my-skills/1",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"proficiency_level\": 9.0,\n    \"years_experience\": 4,\n    \"is_highlighted\": true\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Skill",
+                    "request": {
+                        "method": "DELETE",
+                        "url": "{{base_url}}/skills/my-skills/1",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Toggle Skill Highlight",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/skills/my-skills/1/highlight",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Admin",
+            "item": [
+                {
+                    "name": "Create Skill (Admin)",
+                    "request": {
+                        "method": "POST",
+                        "url": "{{base_url}}/skills/admin/skills",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Python\",\n    \"category\": \"PROGRAMMING_LANGUAGE\",\n    \"description\": \"Python programming language\",\n    \"icon_url\": \"https://python.org/icon.png\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Update Skill (Admin)",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/skills/admin/skills/1",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"Python 3\",\n    \"description\": \"Updated description\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Delete Skill (Admin)",
+                    "request": {
+                        "method": "DELETE",
+                        "url": "{{base_url}}/skills/admin/skills/1",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Restore Skill (Admin)",
+                    "request": {
+                        "method": "PUT",
+                        "url": "{{base_url}}/skills/admin/skills/1/restore",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{access_token}}"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8000/api/v1"
+        }
+    ]
+}

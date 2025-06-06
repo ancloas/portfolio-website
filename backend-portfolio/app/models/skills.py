@@ -11,6 +11,8 @@ class SkillCategory(enum.Enum):
     TOOL = "Tool"
     SOFT_SKILL = "Soft Skill"
     OTHER = "Other"
+    CLOUD = "Cloud"
+    
 
 class Skill(BaseModel):
     __tablename__ = "skills"

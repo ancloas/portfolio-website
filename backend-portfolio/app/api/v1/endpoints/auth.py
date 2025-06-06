@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.core.auth_manager import auth_handler, get_current_user, get_current_admin
 from app.db.session import get_db
 from app.models.user import User
-from app.schemas.user import UserCreate, UserResponse
+from app.schemas.user import UserCreate, UserResponse, UserLogin
 
 router = APIRouter()
 
@@ -14,8 +14,8 @@ async def signup(user_data: UserCreate, db: Session = Depends(get_db)):
     return user
 
 @router.post("/login")
-async def login(email: str, password: str, db: Session = Depends(get_db)):
-    return await auth_handler.login(email, password, db)
+async def login(user_data: UserLogin, db: Session = Depends(get_db)):
+    return await auth_handler.login(user_data.email, user_data.password, db)
 
 @router.get("/me", response_model=UserResponse)
 async def read_users_me(current_user: User = Depends(get_current_user)):

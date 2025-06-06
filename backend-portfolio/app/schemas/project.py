@@ -11,6 +11,8 @@ class ProjectBase(BaseModel):
     live_url: Optional[str] = None
     technologies: str
     order: Optional[int] = None
+    is_featured: Optional[bool] = False
+
 
 class ProjectCreate(ProjectBase):
     """Schema for creating a new project"""

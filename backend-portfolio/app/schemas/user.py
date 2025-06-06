@@ -1,15 +1,19 @@
 from pydantic import BaseModel, EmailStr
 
-class UserCreate(BaseModel):
-    email: EmailStr
-    password: str
-    name: str
-
-class UserResponse(BaseModel):
-    id: int
+class UserBase(BaseModel):
     email: EmailStr
     name: str
-    is_admin: bool = False
 
     class Config:
         from_attributes = True
+
+class UserCreate(UserBase):
+    password: str
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+class UserResponse(UserBase):
+    id: int
+    is_admin: bool = False
