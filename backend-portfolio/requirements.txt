@@ -13,3 +13,4 @@ PyJWT==2.10.1
 werkzeug
 pydantic_settings
 pydantic
+pydantic[email]
