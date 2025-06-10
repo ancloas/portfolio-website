@@ -13,6 +13,5 @@ __pycache__/
 *.ipynb_checkpoints
 *.coverage.xml
 .venv/
-alembic/*
 *.log
 info.log
