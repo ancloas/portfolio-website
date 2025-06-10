@@ -11,6 +11,8 @@ class User(BaseModel):
     name = Column(String(100))
     password_hash = Column(String(255))
     is_admin = Column(Boolean, default=False)
+    user_summary = Column(String(255))
+    experience_summary = Column(String(255))
     
     # Timestamps
     created_at = Column(DateTime(timezone=True), server_default=func.now())
@@ -31,6 +33,14 @@ class User(BaseModel):
                          back_populates="user",
                          cascade="all, delete-orphan",
                          lazy="dynamic")
+    
+     # Add education relationship
+    education = relationship(
+        "Education", 
+        back_populates="user",
+        cascade="all, delete-orphan",
+        lazy="dynamic"
+    )
 
     def __repr__(self):
         return f"<User {self.email}>"
