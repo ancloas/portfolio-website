@@ -20,4 +20,4 @@ class Education(BaseModel):
 
     # Relationships
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
-    user = relationship("User", back_populates="education")
+    user = relationship("User", back_populates="educations")

@@ -35,12 +35,20 @@ class User(BaseModel):
                          lazy="dynamic")
     
      # Add education relationship
-    education = relationship(
+    educations = relationship(
         "Education", 
         back_populates="user",
         cascade="all, delete-orphan",
         lazy="dynamic"
     )
+
+    experiences = relationship(
+        "Experience",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        lazy="dynamic"
+    )
+
 
     def __repr__(self):
         return f"<User {self.email}>"

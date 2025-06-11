@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.core.auth_manager import auth_handler, get_current_user, get_current_admin
 from app.db.session import get_db
 from app.models.user import User
-from app.api.v1.endpoints import projects, auth, articles, skills, education
+from app.api.v1.endpoints import projects, auth, articles, skills, education, experience
 
 router = APIRouter()
 
@@ -69,5 +69,10 @@ router.include_router(
     tags=["education"]
 )
 
+router.include_router(
+    experience.router,
+    prefix="/experience",
+    tags=["experience"]
+)
 
 
