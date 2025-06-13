@@ -10,12 +10,21 @@ class ExperienceBase(BaseModel):
     end_date: Optional[date] = None
     description: Optional[str] = None
 
+class ExperienceResponse(ExperienceBase):
+    pass
 class ExperienceCreate(ExperienceBase):
     pass
 
-class ExperienceUpdate(ExperienceBase):
-    pass
+class ExperienceUpdate(BaseModel):
+    title: Optional[str] = None
+    company: Optional[str] = None
+    location: Optional[str] = None
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+    description: Optional[str] = None
 
+
+ 
 class ExperienceInDBBase(ExperienceBase):
     id: int
     user_id: int

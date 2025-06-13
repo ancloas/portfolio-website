@@ -1,0 +1,1178 @@
+{
+	"info": {
+		"_postman_id": "6928c01f-dccd-4a97-964b-0a22a6bf8be8",
+		"name": "Portfolio API",
+		"description": "API collection for Portfolio application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30144326",
+		"_collection_link": "https://speeding-zodiac-675035.postman.co/workspace/My-Workspace~fa7eb613-7e00-41c6-8f7e-5116d93f92c6/collection/30144326-6928c01f-dccd-4a97-964b-0a22a6bf8be8?action=share&source=collection_link&creator=30144326"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"anugrahgupta.52@gmail.com\",\n    \"password\": \"anugrah123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"userpass123\",\n    \"name\": \"Test User\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Articles",
+			"item": [
+				{
+					"name": "Get All Articles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"is_featured\": \"False\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/articles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Article by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/articles/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Articles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/articles/my-articles",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"articles",
+								"my-articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Sample Article 2\",\n    \"slug\": \"sample-article2\",\n    \"content\": {\n        \"blocks\": [\n            {\n                \"type\": \"paragraph\",\n                \"data\": {\n                    \"text\": \"This is a sample article content.\"\n                }\n            }\n        ]\n    },\n    \"summary\": \"A brief summary of the article\",\n    \"meta_description\": \"SEO description\",\n    \"category\": \"Technology\",\n    \"tags\": [\"tech\", \"web\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/articles/new",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"articles",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated Article title\",\n    \"content\": {\n        \"blocks\": [\n            {\n                \"type\": \"paragraph\",\n                \"data\": {\n                    \"text\": \"Updated content.\"\n                }\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/articles/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Article",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/articles/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"articles",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle Article Publish",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/articles/1/publish",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"articles",
+								"1",
+								"publish"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle Article Feature",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/articles/1/feature",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"articles",
+								"1",
+								"feature"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get All Projects",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/projects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/projects/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Projects",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/projects/my-projects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"my-projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Sample Project\",\n    \"description\": \"A sample project description\",\n    \"technologies\": \"Python, FastAPI, PostgreSQL\",\n    \"github_url\": \"https://github.com/username/project\",\n    \"live_url\": \"https://project.example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/projects/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated Project\",\n    \"description\": \"Updated project description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/projects/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/projects/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Skills",
+			"item": [
+				{
+					"name": "Get All Skills",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/skills",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Skills",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/skills/my-skills",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"my-skills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Skill",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill_id\": 3,\n    \"proficiency_level\": 8.5,\n    \"years_experience\": 3,\n    \"description\": \"Experienced with this technology\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/skills/add-skill",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"add-skill"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Skill",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"proficiency_level\": 9.0,\n    \"years_experience\": 5,\n    \"is_highlighted\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/skills/my-skills/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"my-skills",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Skill",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/skills/my-skills/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"my-skills",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle Skill Highlight",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/skills/my-skills/3/highlight",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"my-skills",
+								"3",
+								"highlight"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Create Skill (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Python\",\n    \"category\": \"Programming Language\",\n    \"description\": \"Python programming language\",\n    \"icon_url\": \"https://python.org/icon.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/skills/admin/skills",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"admin",
+								"skills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Skill (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Python 3\",\n    \"description\": \"Programming and Scripting Language\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/skills/admin/skills/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"admin",
+								"skills",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Skill (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/skills/admin/skills/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"admin",
+								"skills",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Skill (Admin)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpc19hZG1pbiI6ZmFsc2UsImV4cCI6MTc0OTM0Nzk4NX0.r-Gw2vMF9JogBT97Mnw6ZIxBwcTMAtoQz62McPLQlBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/skills/admin/skills/1/restore",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"skills",
+								"admin",
+								"skills",
+								"1",
+								"restore"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Education",
+			"item": [
+				{
+					"name": "Get User's Education",
+					"request": {
+						"method": "GET",
+						"url": "{{base_url}}/education/user/1"
+					}
+				},
+				{
+					"name": "Get My Education",
+					"request": {
+						"method": "GET",
+						"url": "{{base_url}}/education/my-education",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						]
+					}
+				},
+				{
+					"name": "Create Education",
+					"request": {
+						"method": "POST",
+						"url": "{{base_url}}/education",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"institution\": \"Example University\",\n    \"degree\": \"Bachelor of Science\",\n    \"field_of_study\": \"Computer Science\",\n    \"start_date\": \"2020-09-01\",\n    \"end_date\": \"2024-06-30\",\n    \"is_current\": false,\n    \"description\": \"Studied computer science with focus on software engineering\",\n    \"location\": \"New York, NY\",\n    \"grade\": \"3.8 GPA\",\n    \"achievements\": \"Dean's List, Academic Excellence Award\",\n    \"insitution_icon_url\": \"https://example.com/university-logo.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Update Education",
+					"request": {
+						"method": "PUT",
+						"url": "{{base_url}}/education/1",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_current\": true,\n    \"grade\": \"3.9 GPA\",\n    \"achievements\": \"Updated achievements\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					}
+				},
+				{
+					"name": "Delete Education",
+					"request": {
+						"method": "DELETE",
+						"url": "{{base_url}}/education/1",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Experience",
+			"item": [
+				{
+					"name": "Get User's Experiences",
+					"request": {
+						"method": "GET",
+						"url": "{{base_url}}/experience/user/1"
+					}
+				},
+				{
+					"name": "Get My Experiences",
+					"request": {
+						"method": "GET",
+						"url": "{{base_url}}/experience/my-experiences",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						]
+					}
+				},
+				{
+					"name": "Create Experience",
+					"request": {
+						"method": "POST",
+						"url": "{{base_url}}/experience/create",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company\": \"Tech Corp\",\n    \"position\": \"Senior Software Engineer\",\n    \"location\": \"San Francisco, CA\",\n    \"start_date\": \"2022-01-01\",\n    \"is_current\": true,\n    \"description\": \"Leading backend development team\",\n    \"responsibilities\": \"Architecture design, team leadership\",\n    \"achievements\": \"Improved system performance by 40%\",\n    \"technologies\": \"Python, FastAPI, PostgreSQL\",\n    \"company_url\": \"https://techcorp.com\",\n    \"company_logo_url\": \"https://techcorp.com/logo.png\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/experience/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"experience",
+								"create"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Experience",
+					"request": {
+						"method": "PUT",
+						"url": "{{base_url}}/experience/1",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"position\": \"Lead Software Engineer\",\n    \"achievements\": \"Updated achievements\",\n    \"is_current\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/experience/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"experience",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Experience",
+					"request": {
+						"method": "DELETE",
+						"url": "{{base_url}}/experience/1",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						]
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api/v1"
+		}
+	]
+}

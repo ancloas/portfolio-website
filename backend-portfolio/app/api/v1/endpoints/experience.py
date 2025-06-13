@@ -7,6 +7,7 @@ from app.models.user import User
 from app.schemas.experience import (
     ExperienceCreate,
     ExperienceResponse,
+    ExperienceInDBBase,
     ExperienceUpdate
 )
 from app.core.auth_manager import get_current_user
@@ -28,7 +29,7 @@ async def get_user_experiences(
     return experiences
 
 # Protected endpoints - User manages their own experiences
-@router.get("/my-experiences", response_model=List[ExperienceResponse])
+@router.get("/my-experiences", response_model=List[ExperienceInDBBase])
 async def get_my_experiences(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
@@ -73,7 +74,8 @@ async def update_experience(
         )
     
     for field, value in experience_update.dict(exclude_unset=True).items():
-        setattr(db_experience, field, value)
+        if value:
+            setattr(db_experience, field, value)
     
     db.commit()
     db.refresh(db_experience)
