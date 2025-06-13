@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa"; // Install with: npm install react-icons
 
+// import { getAllUsers } from '../api/userService'; // for api call
+
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +29,13 @@ const Login = () => {
     // return Object.keys(newErrors).length === 0;
   };
 
+  //For api call example 
+  //   useEffect(() => {
+  //   getAllUsers()
+  //     .then(setUsers)
+  //     .catch((err) => setError(err.message));
+  // }, []);
+
   // handle form submission
   // const handleSubmit = (e) => {
   //     e.preventDefault();
@@ -44,20 +54,23 @@ const Login = () => {
 
     if (validateForm()) {
       try {
-        // Your API call here
-        console.log("Form submitted:", { email, password });
-      } catch (error) {
-        console.error("Login error:", error);
-        setErrors({ submit: "Failed to login. Please try again." });
-      }
+      const data = await login(form); // 👈 Calls authService → httpClient → config
+      localStorage.setItem('authToken', data.token); // ✅ Save token
+      navigate('/dashboard'); // ✅ Redirect
+    } catch (err) {
+      // setError(err.message || 'Login failed');
+    }
     }
   };
 
   return (
     <div className="flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          My Portfolio
+        </h2> 
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl text-gray-900">
             Login to your account
           </h2>
         </div>
