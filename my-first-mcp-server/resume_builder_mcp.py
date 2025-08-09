@@ -21,6 +21,10 @@ from contextlib import asynccontextmanager
 from collections.abc import AsyncIterator
 from mcp.server.fastmcp import FastMCP, Context
 from api_requester import APIRequester
+from logging import Logger
+
+
+logger = Logger("server")
 
 
 
@@ -133,41 +137,40 @@ def Analyse_JD(JD: str) -> str:
 
 
 
+@mcp.tool()
+def upload_resume(resume_text: str, ctx: Context) -> str:
+    # extracts a json of user    
+    parsed_data = ResumeParser.parse_resume_text(resume_text)
+    if not parsed_data['email']:
+        return json.dumps({"error": "Could not extract email from resume"})
 
-# @mcp.tool()
-# def upload_resume(resume_text: str, ctx: Context) -> str:
-#     # extracts a json of user    
-#     parsed_data = ResumeParser.parse_resume_text(resume_text)
-#     if not parsed_data['email']:
-#         return json.dumps({"error": "Could not extract email from resume"})
+    # 1. Create user
+    user_payload = {
+        "email": parsed_data['email'],
+        "name": parsed_data['name'],
+        "password": "TempPassword123!"  # Or generate securely
+    }
+    user_resp = api.request("POST", "/auth/signup", json=user_payload)
+    if "id" not in user_resp:
+        return json.dumps({"error": "User creation failed", "details": user_resp})
 
-#     # 1. Create user
-#     user_payload = {
-#         "email": parsed_data['email'],
-#         "name": parsed_data['name'],
-#         "password": "TempPassword123!"  # Or generate securely
-#     }
-#     user_resp = api.request("POST", "/auth/signup", json=user_payload)
-#     if "id" not in user_resp:
-#         return json.dumps({"error": "User creation failed", "details": user_resp})
+    user_id = user_resp["id"]
 
-#     user_id = user_resp["id"]
+    # 2. Add skills
+    for skill in parsed_data['skills']:
+        skill_payload = {
+            "skill_id": None,  # If you have skill IDs, use them; else, create skill first
+            "proficiency_level": 8.0,
+            "years_experience": 1,
+            "description": "",
+        }
+        api.request("POST", f"/skills/add-skill", json=skill_payload)
 
-#     # 2. Add skills
-#     for skill in parsed_data['skills']:
-#         skill_payload = {
-#             "skill_id": None,  # If you have skill IDs, use them; else, create skill first
-#             "proficiency_level": 8.0,
-#             "years_experience": 1,
-#             "description": "",
-#         }
-#         api.request("POST", f"/skills/add-skill", json=skill_payload)
-
-#     return json.dumps({
-#         "user_id": user_id,
-#         "message": "Resume uploaded successfully",
-#         "extracted_data": parsed_data
-#     })
+    return json.dumps({
+        "user_id": user_id,
+        "message": "Resume uploaded successfully",
+        "extracted_data": parsed_data
+    })
 
 
 # @mcp.tool()
@@ -236,6 +239,8 @@ def update_resume_according_to_jd(resume: str, jd: str, ) -> str:
         str: A JSON string representing the updated resume, optimized for the provided JD.
     """
     # Example placeholder logic (replace with LLM or rule-based logic as needed)
+    logger.info(f"called tool update resume with {resume} and {jd}")
+    
     import json
 
     try:
@@ -250,3 +255,10 @@ def update_resume_according_to_jd(resume: str, jd: str, ) -> str:
     # You can implement keyword matching, skill highlighting, or section reordering here.
 
     return json.dumps(resume_data, indent=2)
+
+
+# 5. Make the server runnable
+if __name__ == "__main__":
+    print('server is running')
+    mcp.run(transport="streamable-http")
+    

@@ -86,8 +86,7 @@ async def delete_education(
     current_user: User = Depends(get_current_user)
 ):
     """Delete education entry"""
-    db_education = db.query(Education)\
-        .filter(
+    db_education = db.query(Education).filter(
             Education.id == education_id,
             Education.user_id == current_user.id
         ).first()
